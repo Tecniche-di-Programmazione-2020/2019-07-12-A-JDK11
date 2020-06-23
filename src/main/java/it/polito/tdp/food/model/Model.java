@@ -1,6 +1,7 @@
 package it.polito.tdp.food.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +50,21 @@ public void creaMappa(int n) {
 public List<Food> getFood(){
 	List<Food> result =new ArrayList<>();
 	for(Food f:this.grafo.vertexSet())result.add(f);
+	Collections.sort(result);
 	
 	return result;
 }
+public List<CalorieLista> calorieMassime(Food origine){
+	List<CalorieLista> result =new ArrayList<>();
+	if(Graphs.neighborListOf(grafo, origine).size()==0)return null;
+	for(Food f: Graphs.neighborListOf(grafo, origine)) {
+		double peso = grafo.getEdgeWeight(this.grafo.getEdge(origine, f));
+		result.add(new CalorieLista(f,peso));
+	}
+	Collections.sort(result);
+	List<CalorieLista> resultfiltered= result.subList(0, 5);
+	return resultfiltered;
+	
+}
+
 }

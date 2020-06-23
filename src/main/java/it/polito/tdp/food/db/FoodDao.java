@@ -197,7 +197,7 @@ public class FoodDao {
 				try {
 					peso= res.getDouble("peso");
 					System.out.println("peso:"+peso);
-					return peso;
+					
 					
 				} catch (Throwable t) {
 					t.printStackTrace();

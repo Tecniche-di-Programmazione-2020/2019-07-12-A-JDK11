@@ -5,8 +5,10 @@
 package it.polito.tdp.food;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.food.model.CalorieLista;
 import it.polito.tdp.food.model.Food;
 import it.polito.tdp.food.model.Model;
 import javafx.event.ActionEvent;
@@ -68,7 +70,13 @@ public class FoodController {
     @FXML
     void doCalorie(ActionEvent event) {
     	txtResult.clear();
-    	txtResult.appendText("Analisi calorie...");
+    	txtResult.appendText("Analisi calorie...\n");
+    	List<CalorieLista> result =model.calorieMassime(boxFood.getValue());
+    	if(result==null)txtResult.appendText("Nessuna corrispondenza\n");
+    	else {
+    	for(CalorieLista c: result) {
+    		txtResult.appendText(c.toString()+"\n");
+    	}}
     }
 
     @FXML
